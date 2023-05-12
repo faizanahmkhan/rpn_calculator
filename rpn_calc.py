@@ -45,3 +45,12 @@ def evaluate_expression(expression):
     else:
         return "Error: Too many operands"
 
+def main(input_file):
+    with open(input_file) as f:
+        for line in f:
+            expression = line.strip()
+            result = evaluate_expression(expression)
+            if isinstance(result, str):
+                print("{} - {}".format(expression, result))
+            else:
+                print("{} = {}".format(expression, result))
