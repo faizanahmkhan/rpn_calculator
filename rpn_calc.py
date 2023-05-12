@@ -22,4 +22,26 @@ OPERATORS = {
     "mod": lambda a, b: a % b
 }
 
+def evaluate_expression(expression):
+    stack = []
+    for token in expression.split():
+        if token in OPERATORS:
+            if len(stack) < 2:
+                return "Error: Not enough operands for operator {}".format(token)
+            else:
+                b, a = stack.pop(), stack.pop()
+                try:
+                    result = OPERATORS[token](a, b)
+                except ZeroDivisionError:
+                    return "Error: Division by zero"
+                stack.append(result)
+        else:
+            try:
+                stack.append(float(token))
+            except ValueError:
+                return "Error: Invalid token {}".format(token)
+    if len(stack) == 1:
+        return stack[0]
+    else:
+        return "Error: Too many operands"
 
