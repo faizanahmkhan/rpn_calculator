@@ -54,3 +54,10 @@ def main(input_file):
                 print("{} - {}".format(expression, result))
             else:
                 print("{} = {}".format(expression, result))
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: {} input_file".format(sys.argv[0]))
+    else:
+        main(sys.argv[1])
